@@ -19,9 +19,4 @@ A simple and scalable chat application built using Django and WebSockets. This p
 - Channels for WebSocket support
 - SQLite (or another database, if configured)
 
-### Steps to Install
 
-1. **Clone the Repository:**
-   ```bash
-   git clone https://github.com/your-username/django-chat-app.git
-   cd django-chat-app
