@@ -149,6 +149,7 @@ body, html {
 
 .left-menu.collapsed {
     width: 50px;
+    display: none;
 }
 
 .left-menu.collapsed #menu-list {

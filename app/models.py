@@ -8,4 +8,8 @@ class Chat(models.Model):
     message = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f'{self.sender.username} -> {self.receiver.username}: {self.message[:20]}...'
 
+    class Meta:
+        ordering = ['timestamp']
