@@ -1,0 +1,76 @@
+<!-- templates/chat.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat - Chat Application</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Chat</h1>
+        <a href="{% url 'logout' %}">Logout</a>
+    </header>
+
+    <div class="container">
+        <!-- Left Menu: List of Users -->
+        <aside class="left-menu">
+            <h3>Users</h3>
+            <ul>
+                {% for user in users %}
+                    <li><a href="#" class="user-item" data-username="{{ user.username }}">{{ user.username }}</a></li>
+                {% endfor %}
+            </ul>
+        </aside>
+
+        <!-- Chat Area -->
+        <main class="main-content">
+            <div class="messages" id="messages">
+                <!-- Messages will appear here -->
+                {% for chat in chats %}
+                    <div class="message">
+                        <strong>{{ chat.sender.username }}:</strong>
+                        <p>{{ chat.message }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <form method="post" id="chat-form">
+                {% csrf_token %}
+                <textarea name="message" id="message" placeholder="Type your message..." rows="4" required></textarea>
+                <button type="submit">Send</button>
+            </form>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const chatForm = document.getElementById('chat-form');
+            const messagesDiv = document.getElementById('messages');
+            const messageInput = document.getElementById('message');
+
+            chatForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+                const message = messageInput.value;
+
+                // Send the message through WebSocket
+                const chatSocket = new WebSocket('ws://' + window.location.host + '/ws/chat/');
+                chatSocket.onopen = function () {
+                    chatSocket.send(JSON.stringify({
+                        'message': message,
+                    }));
+                };
+
+                chatSocket.onmessage = function (event) {
+                    const data = JSON.parse(event.data);
+                    const newMessage = data['message'];
+                    messagesDiv.innerHTML += `<div class="message"><strong>You:</strong><p>${newMessage}</p></div>`;
+                    messageInput.value = ''; // Clear the input field
+                    messagesDiv.scrollTop = messagesDiv.scrollHeight; // Scroll to the latest message
+                };
+            });
+        });
+    </script>
+</body>
+</html>
