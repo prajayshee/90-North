@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Webpage</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <!-- Fixed Navbar -->
+    <nav class="navbar">
+        <h1>My Responsive Webpage</h1>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Left Menu -->
+        <aside class="left-menu">
+            <button id="toggle-menu" aria-label="Toggle menu">☰</button>
+            <ul id="menu-list">
+                <li>Menu Item 1</li>
+                <li>Menu Item 2</li>
+                <li>Menu Item 3</li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <h2>Welcome to 90 North</h2>
+            <p>
+                90 North is a company dedicated to innovation and excellence in technology solutions. 
+                Our focus is on delivering high-quality projects that meet the unique needs of our clients.
+            </p>
+            <p>
+                With a team of dedicated professionals, 90 North takes pride in its ability to adapt to the 
+                dynamic demands of the tech industry while maintaining a commitment to integrity and quality.
+            </p>
+        </main>
+
+        <!-- Right Panel -->
+        <aside class="right-panel">
+            <h2>Right Panel</h2>
+            <p>Additional information here.</p>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 90 North. All Rights Reserved.</p>
+        <div class="social-links">
+            <a href="#">Facebook</a> | <a href="#">Twitter</a> | <a href="#">LinkedIn</a>
+        </div>
+    </footer>
+    
+
+    <script>
+        // Toggle menu visibility when the button is clicked
+        document.getElementById("toggle-menu").addEventListener("click", function() {
+            const menu = document.querySelector(".left-menu");
+            menu.classList.toggle("collapsed");
+        });
+
+        function adjustPageWidth() {
+            const body = document.body;
+            const width = window.innerWidth;
+
+            if (width >= 992 && width <= 1600) {
+                body.style.transform = "scale(0.9)";
+                body.style.transformOrigin = "top left";
+            } else if (width >= 700 && width <= 767) {
+                body.style.transform = "scale(0.8)";
+                body.style.transformOrigin = "top left";
+            } else if (width >= 600 && width < 700) {
+                body.style.transform = "scale(0.75)";
+                body.style.transformOrigin = "top left";
+            } else if (width <= 600) {
+                body.style.transform = "scale(0.5)";
+                body.style.transformOrigin = "top left";
+            } else {
+                body.style.transform = "none"; // No scaling for larger screens
+            }
+        }
+
+        // Call the function initially and on window resize
+        window.addEventListener('resize', adjustPageWidth);
+        adjustPageWidth();  // Initial call to adjust the page width
+    </script>
+</body>
+</html>

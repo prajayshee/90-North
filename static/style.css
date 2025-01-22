@@ -1,0 +1,204 @@
+/* General Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    min-height: 80vh;
+    margin-top: 60px; /* Added margin to avoid overlap with the navbar */
+    box-sizing: border-box;
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    z-index: 1000;
+}
+
+/* Left Menu */
+.left-menu {
+    background-color: #f4f4f4;
+    width: 200px;
+    padding: 10px;
+    border-right: 1px solid #ccc;
+    transition: width 0.3s ease;
+    box-sizing: border-box;
+}
+
+#toggle-menu {
+    display: block;
+    margin: 0 auto 10px;
+    cursor: pointer;
+    text-align: center;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border: none;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+#toggle-menu:hover {
+    background-color: #444;
+}
+
+.left-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.left-menu li {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #ddd;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.left-menu li:hover {
+    background-color: #bbb;
+    cursor: pointer;
+}
+
+.left-menu.collapsed {
+    width: 50px;
+}
+
+.left-menu.collapsed #menu-list {
+    display: none;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 20px;
+}
+
+/* Right Panel */
+.right-panel {
+    background-color: #f9f9f9;
+    width: 300px;
+    padding: 10px;
+    border-left: 1px solid #ccc;
+}
+
+/* General Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100%; /* Ensures the body stretches to the viewport height */
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    min-height: calc(100vh - 50px); /* Full viewport height minus navbar height */
+    margin-top: 60px; /* Space between navbar and content */
+    padding-top: 10px; /* Optional: Inner spacing within the container */
+}
+
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    z-index: 1000;
+}
+
+/* Left Menu */
+.left-menu {
+    background-color: #f4f4f4;
+    width: 200px;
+    padding: 10px;
+    border-right: 1px solid #ccc;
+    transition: width 0.3s ease;
+}
+
+.left-menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.left-menu li {
+    margin: 10px 0;
+}
+
+#menu-list {
+    display: block;
+}
+
+.left-menu.collapsed {
+    width: 50px;
+}
+
+.left-menu.collapsed #menu-list {
+    display: none;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    overflow: auto; /* Ensures content scrolls if necessary */
+}
+
+/* Right Panel */
+.right-panel {
+    background-color: #f9f9f9;
+    width: 300px;
+    padding: 10px;
+    border-left: 1px solid #ccc;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    width: 100%;
+    position: fixed; /* Sticks footer to the bottom */
+    bottom: 0;
+    left: 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .left-menu {
+        width: 150px;
+    }
+
+    .right-panel {
+        display: none;
+    }
+}
+
+@media (max-width: 576px) {
+    .left-menu {
+        width: 100px;
+    }
+
+    .main-content {
+        padding: 10px;
+    }
+}
